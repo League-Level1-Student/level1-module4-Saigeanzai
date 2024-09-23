@@ -65,17 +65,42 @@ public class Calculator implements ActionListener {
 		JButton buttonPressed = (JButton) e.getSource();
 		
 		if(buttonPressed.equals(firstButton)) {
-			
+			label.setText(Integer.toString(add()));
+		}
+		if(buttonPressed.equals(secondButton)) {
+			label.setText(Integer.toString(sub()));
+		}
+		if(buttonPressed.equals(thirdButton)) {
+			label.setText(Integer.toString(mul()));
+		}
+		if(buttonPressed.equals(fourthButton)) {
+			label.setText(Integer.toString(div()));
 		}
 		
 	}
+	public int add() {
+		int firstAnswer = Integer.valueOf(firstText.getText());
+		int secondAnswer = Integer.valueOf(secondText.getText());
+		return firstAnswer + secondAnswer;
+	}
 	
+	public int sub() {
+		int firstAnswer = Integer.valueOf(firstText.getText());
+		int secondAnswer = Integer.valueOf(secondText.getText());
+		return firstAnswer - secondAnswer;
+	}
 	
+	public int mul() {
+		int firstAnswer = Integer.valueOf(firstText.getText());
+		int secondAnswer = Integer.valueOf(secondText.getText());
+		return firstAnswer*secondAnswer;
+	}
 	
-	
-	
-	
-	
+	public int div() {
+		int firstAnswer = Integer.valueOf(firstText.getText());
+		int secondAnswer = Integer.valueOf(secondText.getText());
+		return firstAnswer/secondAnswer;
+	}
 	
 	
 	
