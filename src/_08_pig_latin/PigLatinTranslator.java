@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import game_tools.Sound;
+
 public class PigLatinTranslator implements ActionListener {
 	
 	JFrame frame;
@@ -30,6 +32,8 @@ public class PigLatinTranslator implements ActionListener {
 		secondButton = new JButton("<<");
 		thirdButton = new JButton("speak");
 		firstButton.addActionListener(this);
+		secondButton.addActionListener(this);
+		thirdButton.addActionListener(this);
 		
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,11 +64,14 @@ public class PigLatinTranslator implements ActionListener {
 		if(buttonPressed.equals(firstButton)) {
 	translateEnglishToPigLatin(firstAnswer);
 	pigText.setText(translateEnglishToPigLatin(firstAnswer));
+		}
 	if(buttonPressed.equals(secondButton)) {
 		translatePigLatinToEnglish(secondAnswer);
-		latinText.setText(translateEnglishToPigLatin(secondAnswer));
+		latinText.setText(translatePigLatinToEnglish(secondAnswer));
 	}
-		}
+	if(buttonPressed.equals(thirdButton)) {
+		Sound.speak(secondAnswer);
+	}
 	}
     /**
      * Method to translate a english to pig latin.
