@@ -81,7 +81,7 @@ public class Whak_a_mole implements ActionListener{
 			drawMethod(ran);
 			score +=1;
 			System.out.println(score);
-			playSound("music.wav");
+			//playSound("music.wav");
 		}
 		if(buttonPressed.getText().equals("")) {
 			speak("miss!");
