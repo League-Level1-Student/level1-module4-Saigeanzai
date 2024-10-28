@@ -22,15 +22,11 @@ public class Slot_machine_game implements ActionListener {
 	JPanel buttonPanel;
 	JButton button;
 	Random rand;
-	JLabel label1 = new JLabel();
-	JLabel label2 = new JLabel();
-	JLabel label3 = new JLabel();
-	
-	
-	
+	JLabel label1 = createLabelImage("cherries.jpg");
+	JLabel label2 = createLabelImage("oranges.jpg");
+	JLabel label3 = createLabelImage("lemons.jpg");
+
 	public void setup() {
-		
-		
 
 		frame = new JFrame();
 		frame.setVisible(true);
@@ -40,81 +36,77 @@ public class Slot_machine_game implements ActionListener {
 		secondPanel = new JPanel();
 		buttonPanel = new JPanel();
 		imagePanel = new JPanel();
-		
+
 		frame.add(mainPanel);
 		mainPanel.add(secondPanel);
-		secondPanel.add(buttonPanel);
 		secondPanel.add(imagePanel);
-		buttonPanel.add(button);
-		
+		secondPanel.add(buttonPanel);
 		imagePanel.add(label1);
 		imagePanel.add(label2);
 		imagePanel.add(label3);
-		
+		buttonPanel.add(button);
+
 		button.addActionListener(this);
-		
-		
-		
-		
+
 		frame.pack();
 	}
 
-	
-	
-	public JLabel createLabel(){
+	public JLabel createLabel(int number) {
 		JLabel temp = new JLabel();
-		int number = rand.nextInt(3);
+		//rand = new Random();
+		//int number = rand.nextInt(3);
 
-if (number==1) {
-	try {
-		temp = createLabelImage("cherries.jpg");
-	} catch (MalformedURLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-}
-else if (number==2)	{
-	try {
-		temp = createLabelImage("lemons.jpg");
-	} catch (MalformedURLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-}
-else if (number==3) {		
-		try {
-			temp = createLabelImage("oranges.jpg");
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (number == 0) {
+			
+				temp = createLabelImage("cherries.jpg");
+			
+		} else if (number == 1) {
+			
+				temp = createLabelImage("lemons.jpg");
+		
+		} else if (number == 2) {
+			
+				temp = createLabelImage("oranges.jpg");
+			
 		}
-}
 		return temp;
 	}
-    
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Random ran = new Random();
 		JButton buttonPressed = (JButton) e.getSource();
+		int number = ran.nextInt(3);
+		int number2 = ran.nextInt(3);
+		int number3 = ran.nextInt(3);
+System.out.println("Spinning the wheels");
+		if (buttonPressed.equals(button)) {
+			imagePanel.removeAll();
+			imagePanel.updateUI();
+			rand = new Random();
+			JLabel label1 = createLabel(number);
+			JLabel label2 = createLabel(number2);
+			JLabel label3 = createLabel(number3);
+			imagePanel.add(label1);
+			imagePanel.add(label2);
+			imagePanel.add(label3);
+		}
 		
-		
-		if(buttonPressed.equals(button)) {
-			label1 = createLabel();
-			label2 = createLabel();
-			label3 = createLabel();
+		if (number==number2&&number2==number3) {
+			System.out.println("YOU WIN!");
 		}
 	}
-	private JLabel createLabelImage(String fileName) throws MalformedURLException{
-        URL imageURL = getClass().getResource(fileName);
-	if (imageURL == null){
-		System.err.println("Could not find image " + fileName);
-		return new JLabel();
+
+	private JLabel createLabelImage(String fileName) {
+		URL imageURL = getClass().getResource(fileName);
+		if (imageURL == null) {
+			System.err.println("Could not find image " + fileName);
+			return new JLabel();
+		}
+		ImageIcon icon = new ImageIcon(imageURL);
+		JLabel imageLabel = new JLabel(icon);
+	
+		return imageLabel;
 	}
-	Icon icon = new ImageIcon(imageURL);
-	JLabel imageLabel = new JLabel(icon);
-	return imageLabel;
-}
 }
